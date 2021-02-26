@@ -1,0 +1,70 @@
+<header class="header">Contacts Management</header>
+
+<!--
+  Possibile enhancements:
+    - Create a separate component for the Inputs
+    - Create a CVA to manage the form (to be used with the component mentioned above)
+    - Create a separate componente for the Button
+ -->
+
+<section>
+  <form [formGroup]="form" (ngSubmit)="add()">
+    <div class="form__container">
+      <div class="form__inputs">
+        <div class="form__inputs-name">
+          <label>Name</label>
+          <input formControlName="name" type="text" name="name" placeholder="Name" autocomplete="off" />
+
+          <div *ngIf="name?.errors?.required && name?.invalid && (name?.dirty || name?.touched)"
+            class="form__inputs-error">
+            <label>Name is required!</label>
+          </div>
+        </div>
+        <div class="form__inputs-surname">
+          <label>Surname</label>
+          <input formControlName="surname" type="text" name="surname" placeholder="Surname" autocomplete="off" />
+
+          <div *ngIf="surname?.errors?.required && (surname?.dirty || surname?.touched)" class="form__inputs-error">
+            <label>Surname is required!</label>
+          </div>
+        </div>
+        <div class="form__inputs-address">
+          <label>Address</label>
+          <input formControlName="address" type="text" name="address" placeholder="Address" autocomplete="off" />
+
+          <div *ngIf="address?.errors?.required && (address?.dirty || address?.touched)" class="form__inputs-error">
+            <label>Address is required!</label>
+          </div>
+        </div>
+        <div class="form__inputs-city">
+          <label>City</label>
+          <input formControlName="city" type="text" name="city" placeholder="City" autocomplete="off" />
+
+          <div *ngIf="city?.errors?.required && (city?.dirty || city?.touched)" class="form__inputs-error">
+            <label>City is required!</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__ctas">
+        <button class="form__ctas-submit" type="submit" [disabled]="!form.valid">Add Contact</button>
+        <button class="form__ctas-submit" type="button" (click)="form.reset()">Clear</button>
+      </div>
+    </div>
+  </form>
+
+  <ng-container>
+    <div *ngFor="let contact of (contacts$ | async)" class="contacts__container">
+      <div class="contacts__details">
+        <label>{{contact.name | titlecase}}</label>
+        <label>{{contact.surname | titlecase}}</label>
+        <label>{{contact.address | titlecase}}</label>
+        <label>{{contact.city | titlecase}}</label>
+      </div>
+      <div class="contacts__ctas">
+        <button (click)="delete(contact.id)">Delete</button>
+        <button (click)="update(contact.id)">Update</button>
+      </div>
+    </div>
+  </ng-container>
+</section>

@@ -1,0 +1,149 @@
+@mixin center($direction: column, $justify: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+
+  flex-direction: $direction;
+}
+
+.form {
+  &__container {
+    @include center;
+  }
+
+  &__inputs {
+    @include center;
+
+    margin-bottom: 10px;
+
+    &-name,
+    &-surname,
+    &-city,
+    &-address {
+      display: flex;
+      align-items: flex-start;
+
+      flex-direction: column;
+
+      width: auto;
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      & input {
+        padding: 10px;
+        border-radius: 5px;
+        border-width: 1px;
+      }
+
+      & label {
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+    }
+
+    &-error {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+
+      flex-direction: column;
+
+      background-color: rgb(240, 128, 128);
+      font-size: small;
+
+      height: 40px;
+      width: 100%;
+      border-radius: 5px;
+
+      & label {
+        color: #ffffff;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &__ctas {
+    &-submit {
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+
+      background-color: #83d888;
+      color: #ffffff;
+      font-weight: bold;
+
+      margin-right: 5px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:disabled {
+        opacity: 40%;
+      }
+    }
+  }
+}
+
+.contacts {
+  &__container {
+    @include center(row, space-between);
+
+    background-color: #0f4884;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    height: auto;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  &__details {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    margin-right: 10px;
+
+    & label {
+      color: #ffffff;
+      word-break: break-all;
+    }
+  }
+
+  &__ctas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+
+      background-color: #83d888;
+      color: #ffffff;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      font-weight: bolder;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #0f4884;
+  height: var(--header-height);
+  color: #ffffff;
+}
